@@ -15,6 +15,7 @@ import {
 import { Loader } from "../styles/loader";
 import { ICitys, ICity } from "../types/cityData";
 import Now from "../chart/Now";
+import { Helmet } from "react-helmet-async";
 
 interface IProps {
 	cityData?: ICitys;
@@ -45,6 +46,9 @@ function ByRegion({ cityData, cityLoading }: IProps) {
 	}, [cityLoading, cityTitle, cityDataArray])
 	return (
 		<>
+			<Helmet>
+				<title>시·도 확진</title>
+			</Helmet>
 			{cityLoading ? (<Loader>Loading...</Loader>) : (
 				<>
 					<Select value={cityTitle} onInput={onInput}>

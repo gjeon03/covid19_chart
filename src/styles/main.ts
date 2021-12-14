@@ -51,3 +51,21 @@ export const Tab = styled.span<{ isActive: boolean }>`
 		color: ${(props) => props.theme.accentColor};
 	}
 `;
+
+export const ImgContainer = styled.div`
+  padding: 50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+`;
+
+export const Backdrop = styled.div`
+  width: 400px;
+  height: 350px;
+  background-image: url("https://i.pinimg.com/564x/7d/73/3a/7d733acc83cce320af19feb7c38993d0.jpg");
+  background-position: center center;
+  background-size: cover;
+  filter: blur(2px);
+  opacity: 0.5;
+  z-index: 0;
+`;

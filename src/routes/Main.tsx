@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Helmet } from "react-helmet-async";
 import { useMatch, Link, Routes, Route } from "react-router-dom";
 import { fetchTotal, fetchCity } from "../api";
 import { useSetRecoilState } from "recoil";
@@ -10,7 +11,9 @@ import {
 	Header,
 	Title,
 	Tabs,
-	Tab
+	Tab,
+	ImgContainer,
+	Backdrop,
 } from "../styles/main";
 import { ICitys } from "../types/cityData";
 import { isDarkAtom } from "../atoms";
@@ -35,10 +38,16 @@ function Main() {
 	const setDarkAtom = useSetRecoilState(isDarkAtom);
 	const toggleDarkAtom = () => setDarkAtom((current) => !current);
 	const isDark = useRecoilValue(isDarkAtom);
+	const urlCheck = domesticMatch || regionMatch;
 	return (
 		<Container>
+			<Helmet>
+				<title>COVID-19</title>
+			</Helmet>
 			<Header>
-				<Title>COVID-19</Title>
+				<Title>
+					<Link to="/">COVID-19</Link>
+				</Title>
 				<div>
 					<DarkModeToggle
 						onChange={toggleDarkAtom}
@@ -55,6 +64,11 @@ function Main() {
 					<Link to="region">시·도</Link>
 				</Tab>
 			</Tabs>
+			{urlCheck ? null : (
+				<ImgContainer>
+					<Backdrop></Backdrop>
+				</ImgContainer>
+			)}
 			<Routes>
 				<Route path="domestic" element={<Domestic {...domesticData} />} />
 				<Route path="region" element={<ByRegion {...byRegionData} />} />

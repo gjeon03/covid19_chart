@@ -11,6 +11,7 @@ import Total from "../chart/Total";
 import { ITotal } from "../types/totalData";
 import { ICitys } from "../types/cityData";
 import { Loader } from "../styles/loader";
+import { Helmet } from "react-helmet-async";
 
 interface IProps {
 	totalLoading: boolean;
@@ -22,6 +23,9 @@ interface IProps {
 function Domestic({ totalLoading, cityLoading, totalData, cityData }: IProps) {
 	return (
 		<>
+			<Helmet>
+				<title>국내 확진</title>
+			</Helmet>
 			<TotalContainer>
 				{totalLoading ? (<Loader>Loading...</Loader>) : (
 					<Overview>
