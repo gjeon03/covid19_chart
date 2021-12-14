@@ -12,6 +12,11 @@ export const Header = styled.header`
 	justify-content: center;
 	align-items: center;
 	font-weight: 500;
+	position: relative;
+	div {
+		position: absolute;
+		right: 0;
+	}
 `;
 
 export const Title = styled.h1`
@@ -35,7 +40,6 @@ export const Tab = styled.span<{ isActive: boolean }>`
 	border: 1px solid ${(props) =>
 		props.isActive ? props.theme.accentColor : props => props.theme.textColor};
 	font-size: 16px;
-	padding: 5px;
 	color: ${(props) =>
 		props.isActive ? props.theme.accentColor : props => props.theme.textColor};
 	a {

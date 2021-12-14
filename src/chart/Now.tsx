@@ -35,12 +35,12 @@ function Now({ cityData }: IProps) {
 						},
 					}
 				},
-				colors: ['#33b2df', '#90ee7e'],
+				colors: ['#33b2df', '#ff4444'],
 				dataLabels: {
 					enabled: true,
 					textAnchor: 'start',
 					style: {
-						colors: ['#fff']
+						colors: ['#ced6e0']
 					},
 					formatter: function (val, opt) {
 						return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
@@ -52,7 +52,7 @@ function Now({ cityData }: IProps) {
 				},
 				stroke: {
 					width: 1,
-					colors: ['#fff']
+					colors: [`#f1f2f6`]
 				},
 				xaxis: {
 					categories: ['국내', '해외유입'],
@@ -65,10 +65,6 @@ function Now({ cityData }: IProps) {
 					labels: {
 						show: false
 					}
-				},
-				subtitle: {
-					text: 'Category Names as DataLabels inside bars',
-					align: 'center',
 				},
 				legend: {
 					show: false

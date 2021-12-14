@@ -1,5 +1,10 @@
 import { atom} from "recoil";
 
+export const isDarkAtom = atom({
+	key: "isDark",
+	default: true,
+});
+
 export enum CityTitles {
 	"서울" = "서울",
 	"부산" = "부산",

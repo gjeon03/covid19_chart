@@ -7,8 +7,11 @@ import {
 	NowContainer,
 	Text,
 	Overview,
-	OverviewItem
-} from "../styles/domestic";
+	OverviewItem,
+	Message,
+	MessageBox,
+	Select,
+} from "../styles/covid19View";
 import { Loader } from "../styles/loader";
 import { ICitys, ICity } from "../types/cityData";
 import Now from "../chart/Now";
@@ -44,12 +47,12 @@ function ByRegion({ cityData, cityLoading }: IProps) {
 		<>
 			{cityLoading ? (<Loader>Loading...</Loader>) : (
 				<>
-					<select value={cityTitle} onInput={onInput}>
+					<Select value={cityTitle} onInput={onInput}>
 						{cityDataArray.map((obj, index) => {
 							const countryName = obj.countryName;
 							return <option key={index} value={countryName}>{countryName}</option>
 						})}
-					</select>
+					</Select>
 					<TotalContainer>
 						<Overview>
 							<OverviewItem>
@@ -80,7 +83,9 @@ function ByRegion({ cityData, cityLoading }: IProps) {
 									<span>{result?.percentage} 명</span>
 								</OverviewItem>
 							</Overview>
-							<span>※ 지역구분은 신고지를 기준으로 하며, 초기 신고 이후 소관지역이 변경된 경우 변동 가능</span>
+							<MessageBox>
+								<Message>※ 지역구분은 신고지를 기준으로 하며, 초기 신고 이후 소관지역이 변경된 경우 변동 가능</Message>
+							</MessageBox>
 						</DivBox>
 					</TotalContainer>
 				</>

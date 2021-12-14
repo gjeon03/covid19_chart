@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { useMatch, Link, Routes, Route } from "react-router-dom";
 import { fetchTotal, fetchCity } from "../api";
+import { useSetRecoilState } from "recoil";
 import Domestic from "./Domestic";
 import ByRegion from "./ByRegion";
 import { ITotal } from "../types/totalData";
@@ -12,6 +13,9 @@ import {
 	Tab
 } from "../styles/main";
 import { ICitys } from "../types/cityData";
+import { isDarkAtom } from "../atoms";
+import DarkModeToggle from "react-dark-mode-toggle";
+import { useRecoilValue } from "recoil";
 
 function Main() {
 	const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
@@ -28,10 +32,20 @@ function Main() {
 		cityData,
 		cityLoading
 	}
+	const setDarkAtom = useSetRecoilState(isDarkAtom);
+	const toggleDarkAtom = () => setDarkAtom((current) => !current);
+	const isDark = useRecoilValue(isDarkAtom);
 	return (
 		<Container>
 			<Header>
 				<Title>COVID-19</Title>
+				<div>
+					<DarkModeToggle
+						onChange={toggleDarkAtom}
+						checked={isDark}
+						size={60}
+					/>
+				</div>
 			</Header>
 			<Tabs>
 				<Tab isActive={domesticMatch !== null}>

@@ -5,7 +5,7 @@ import {
 	Text,
 	Overview,
 	OverviewItem
-} from "../styles/domestic";
+} from "../styles/covid19View";
 import Now from "../chart/Now";
 import Total from "../chart/Total";
 import { ITotal } from "../types/totalData";
