@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
-import { fetchTotal } from "../api";
+import { fetchTotal, fetchCity } from "../api";
 
 const Span = styled.span`
 	text-align: center;
@@ -58,6 +58,11 @@ const Text = styled(Span)`
 	padding: 5px;
 `;
 
+const Loader = styled.span`
+	text-align: center;
+	display: block;
+`;
+
 interface ITotal {
 	resultCode: string;
 	TotalCase: string;
@@ -91,9 +96,20 @@ interface ITotal {
 	resultMessag: string;
 }
 
+interface ICity {
+	countryName: string;
+	newCase: number;
+	totalCase: number;
+	recovered: number;
+	death: number;
+	percentage: number;
+	newCcase: number;
+	newFcase: number;
+}
+
 function Main() {
-	const { isLoading, data } = useQuery<ITotal>("total", fetchTotal);
-	console.log(data);
+	const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
+	const { isLoading: cityLoading, data: cityData } = useQuery<ICity[]>("city", fetchCity);
 	return (
 		<Container>
 			<Header>
@@ -105,12 +121,15 @@ function Main() {
 			</Tabs>
 			<TotalContainer>
 				<Text>전체</Text>
+				{totalLoading ? (<Loader>Loading...</Loader>) : null}
 			</TotalContainer>
 			<NowContainer>
 				<Text>신규 확진자</Text>
+				{cityLoading ? (<Loader>Loading...</Loader>) : null}
 			</NowContainer>
 			<ByRegionContainer>
 				<Text>지역별 비율</Text>
+				{totalLoading ? (<Loader>Loading...</Loader>) : null}
 			</ByRegionContainer>
 		</Container>
 	);
