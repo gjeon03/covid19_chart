@@ -4,7 +4,8 @@ import {
 	ByRegionContainer,
 	Text,
 	Overview,
-	OverviewItem
+	OverviewItem,
+	TopMsg,
 } from "../styles/covid19View";
 import Now from "../chart/Now";
 import Total from "../chart/Total";
@@ -28,20 +29,25 @@ function Domestic({ totalLoading, cityLoading, totalData, cityData }: IProps) {
 			</Helmet>
 			<TotalContainer>
 				{totalLoading ? (<Loader>Loading...</Loader>) : (
-					<Overview>
-						<OverviewItem>
-							<span>사망자</span>
-							<span>{totalData?.TotalDeath}</span>
-						</OverviewItem>
-						<OverviewItem>
-							<span>확진자</span>
-							<span>{totalData?.TotalCase}</span>
-						</OverviewItem>
-						<OverviewItem>
-							<span>제한 해제</span>
-							<span>{totalData?.TotalRecovered}</span>
-						</OverviewItem>
-					</Overview>
+					<>
+						<TopMsg>
+							<Text>{totalData?.updateTime}</Text>
+						</TopMsg>
+						<Overview>
+							<OverviewItem>
+								<span>사망자</span>
+								<span>{totalData?.TotalDeath}</span>
+							</OverviewItem>
+							<OverviewItem>
+								<span>확진자</span>
+								<span>{totalData?.TotalCase}</span>
+							</OverviewItem>
+							<OverviewItem>
+								<span>제한 해제</span>
+								<span>{totalData?.TotalRecovered}</span>
+							</OverviewItem>
+						</Overview>
+					</>
 				)}
 			</TotalContainer>
 			<NowContainer>

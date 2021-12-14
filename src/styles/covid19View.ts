@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivBox = styled.div`
-	margin: 25px 0px;
+	margin: 12px 0px;
 `;
 
 
@@ -30,7 +30,7 @@ export const Overview = styled.div`
 	justify-content: space-between;
 	background-color: ${props => props.theme.boxColor};
 	border: 1px solid ${props => props.theme.textColor};
-	padding: 12px 20px;
+	padding: 12px 10px;
 	border-radius: 10px;
 	`;
 
@@ -78,5 +78,12 @@ export const Select = styled.select`
 		padding: 3px 0;
 		text-align: center;
 	}
-`
+`;
+
+export const TopMsg = styled.div`
+	margin-bottom:12px;
+	span {
+		font-size: 16px;
+	}
+`;
 	
