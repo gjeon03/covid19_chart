@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchTotal, fetchCity } from "../api";
-import ApexChart from "react-apexcharts";
 import Now from "../chart/Now";
+import Total from "../chart/Total";
 
 const Span = styled.span`
 	text-align: center;
@@ -198,28 +198,7 @@ function Main() {
 			<ByRegionContainer>
 				<Text>지역별 비율</Text>
 				{totalLoading ? (<Loader>Loading...</Loader>) : (
-					<ApexChart
-						type='donut'
-						series={[
-							Number(totalData?.city1p),
-							Number(totalData?.city2p),
-							Number(totalData?.city3p),
-							Number(totalData?.city4p),
-							Number(totalData?.city5p)
-						]}
-						options={{
-							labels: [
-								totalData?.city1n || "",
-								totalData?.city2n || "",
-								totalData?.city3n || "",
-								totalData?.city4n || "",
-								totalData?.city5n || "",
-							],
-							legend: {
-								show: false
-							}
-						}}
-					/>
+					<Total totalData={totalData} />
 				)}
 			</ByRegionContainer>
 		</Container>
