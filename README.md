@@ -1,6 +1,6 @@
 # COVID-19 CHART REACT APP
 
-## Router
+## Routes
 
 - main[]
 
