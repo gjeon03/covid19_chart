@@ -13,8 +13,9 @@ function Now({ cityData }: IProps) {
 			type="bar"
 			series={[{
 				data: [
+					Number(cityData?.newFcase) | 0,
 					Number(caseResult) | 0,
-					Number(cityData?.newFcase) | 0]
+				]
 			}]}
 			options={{
 				chart: {
@@ -55,7 +56,7 @@ function Now({ cityData }: IProps) {
 					colors: [`#f1f2f6`]
 				},
 				xaxis: {
-					categories: ['국내', '해외유입'],
+					categories: ['해외유입', '국내'],
 					axisBorder: { show: false },
 					axisTicks: { show: false },
 					labels: { show: false },
