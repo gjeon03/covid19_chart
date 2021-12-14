@@ -1,5 +1,4 @@
 import {
-	DivBox,
 	TotalContainer,
 	NowContainer,
 	ByRegionContainer,

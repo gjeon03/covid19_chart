@@ -1,5 +1,4 @@
-import { atom, selector } from "recoil";
-import {ICity} from "./types/cityData";
+import { atom} from "recoil";
 
 export enum CityTitles {
 	"서울" = "서울",

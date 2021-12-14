@@ -1,5 +1,5 @@
 import ApexChart from "react-apexcharts";
-import { ICitys, ICity } from "../types/cityData";
+import { ICity } from "../types/cityData";
 
 interface IProps {
 	cityData?: ICity;
