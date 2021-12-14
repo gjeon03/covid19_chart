@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useQuery } from "react-query";
+import { fetchTotal } from "../api";
 
 const Span = styled.span`
 	text-align: center;
@@ -56,7 +58,42 @@ const Text = styled(Span)`
 	padding: 5px;
 `;
 
+interface ITotal {
+	resultCode: string;
+	TotalCase: string;
+	TotalRecovered: string;
+	TotalDeath: string;
+	NowCase: string;
+	city1n: string;
+	city2n: string;
+	city3n: string;
+	city4n: string;
+	city5n: string;
+	city1p: string;
+	city2p: string;
+	city3p: string;
+	city4p: string;
+	city5p: string;
+	recoveredPercentage: number;
+	deathPercentage: number;
+	checkingCounter: number;
+	checkingPercentage: number;
+	caseCount: number;
+	casePercentage: number;
+	notcaseCount: number;
+	notcasePercentage: number;
+	TotalChecking: number;
+	TodayRecovered: number;
+	TodayDeath: number;
+	TotalCaseBefore: string;
+	source: string;
+	updateTime: string;
+	resultMessag: string;
+}
+
 function Main() {
+	const { isLoading, data } = useQuery<ITotal>("total", fetchTotal);
+	console.log(data);
 	return (
 		<Container>
 			<Header>
