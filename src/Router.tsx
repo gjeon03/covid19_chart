@@ -5,7 +5,7 @@ function Router() {
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Routes>
-				<Route path="/" element={<Main />} />
+				<Route path="/*" element={<Main />} />
 			</Routes>
 		</BrowserRouter>
 	);

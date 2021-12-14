@@ -6,7 +6,6 @@ interface IProps {
 }
 
 function Now({ cityData }: IProps) {
-	console.log(cityData);
 	const koreaCcase = cityData?.korea.newCcase;
 	const caseResult = String(koreaCcase).replace(",", "");
 	return (
