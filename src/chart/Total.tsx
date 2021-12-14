@@ -1,37 +1,5 @@
 import ApexChart from "react-apexcharts";
-
-interface ITotal {
-	resultCode: string;
-	TotalCase: string;
-	TotalRecovered: string;
-	TotalDeath: string;
-	NowCase: string;
-	city1n: string;
-	city2n: string;
-	city3n: string;
-	city4n: string;
-	city5n: string;
-	city1p: string;
-	city2p: string;
-	city3p: string;
-	city4p: string;
-	city5p: string;
-	recoveredPercentage: number;
-	deathPercentage: number;
-	checkingCounter: number;
-	checkingPercentage: number;
-	caseCount: number;
-	casePercentage: number;
-	notcaseCount: number;
-	notcasePercentage: number;
-	TotalChecking: number;
-	TodayRecovered: number;
-	TodayDeath: number;
-	TotalCaseBefore: string;
-	source: string;
-	updateTime: string;
-	resultMessag: string;
-}
+import { ITotal } from "../types/totalData";
 
 interface IProps {
 	totalData?: ITotal;
