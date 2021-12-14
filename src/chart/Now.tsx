@@ -1,12 +1,12 @@
 import ApexChart from "react-apexcharts";
-import { ICitys } from "../types/cityData";
+import { ICitys, ICity } from "../types/cityData";
 
 interface IProps {
-	cityData?: ICitys;
+	cityData?: ICity;
 }
 
 function Now({ cityData }: IProps) {
-	const koreaCcase = cityData?.korea.newCcase;
+	const koreaCcase = cityData?.newCcase;
 	const caseResult = String(koreaCcase).replace(",", "");
 	return (
 		<ApexChart
@@ -14,7 +14,7 @@ function Now({ cityData }: IProps) {
 			series={[{
 				data: [
 					Number(caseResult) | 0,
-					Number(cityData?.korea.newFcase) | 0]
+					Number(cityData?.newFcase) | 0]
 			}]}
 			options={{
 				chart: {

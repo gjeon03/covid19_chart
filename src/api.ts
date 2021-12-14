@@ -6,5 +6,5 @@ export function fetchTotal() {
 }
 
 export function fetchCity() {
-	return fetch(`${CITY_URL}`).then((response) => response.json());
+	return fetch(`${CITY_URL}`).then((response) => Object(response.json()));
 }

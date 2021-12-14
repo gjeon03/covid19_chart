@@ -44,7 +44,7 @@ function Domestic({ totalLoading, cityLoading, totalData, cityData }: IProps) {
 			<NowContainer>
 				<Text>신규 확진자</Text>
 				{cityLoading ? (<Loader>Loading...</Loader>) : (
-					<Now cityData={cityData} />
+					<Now cityData={cityData?.korea} />
 				)}
 			</NowContainer>
 			<ByRegionContainer>
