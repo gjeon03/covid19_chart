@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchTotal, fetchCity } from "../api";
 import ApexChart from "react-apexcharts";
+import Now from "../chart/Now";
 
 const Span = styled.span`
 	text-align: center;
@@ -161,10 +162,6 @@ interface ICitys {
 function Main() {
 	const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
 	const { isLoading: cityLoading, data: cityData } = useQuery<ICitys>("city", fetchCity);
-	// const totalLoading = false;
-	// const cityLoading = false;
-	const koreaCcase = cityData?.korea.newCcase;
-	const caseResult = String(koreaCcase).replace(",", "");
 	return (
 		<Container>
 			<Header>
@@ -195,85 +192,7 @@ function Main() {
 			<NowContainer>
 				<Text>신규 확진자</Text>
 				{cityLoading ? (<Loader>Loading...</Loader>) : (
-					<ApexChart
-						type="bar"
-						series={[{
-							data: [
-								Number(caseResult) | 0,
-								Number(cityData?.korea.newFcase) | 0]
-						}]}
-						options={{
-							chart: {
-								height: 100,
-								width: 500,
-								toolbar: {
-									show: false,
-								},
-								background: "transparent",
-							},
-							plotOptions: {
-								bar: {
-									barHeight: '100%',
-									distributed: true,
-									horizontal: true,
-									dataLabels: {
-										position: 'bottom'
-									},
-								}
-							},
-							colors: ['#33b2df', '#90ee7e'],
-							dataLabels: {
-								enabled: true,
-								textAnchor: 'start',
-								style: {
-									colors: ['#fff']
-								},
-								formatter: function (val, opt) {
-									return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-								},
-								offsetX: 0,
-								dropShadow: {
-									enabled: true
-								}
-							},
-							stroke: {
-								width: 1,
-								colors: ['#fff']
-							},
-							xaxis: {
-								categories: ['국내', '해외유입'],
-								axisBorder: { show: false },
-								axisTicks: { show: false },
-								labels: { show: false },
-							},
-							grid: { show: false },
-							yaxis: {
-								labels: {
-									show: false
-								}
-							},
-							subtitle: {
-								text: 'Category Names as DataLabels inside bars',
-								align: 'center',
-							},
-							legend: {
-								show: false
-							},
-							tooltip: {
-								theme: 'dark',
-								x: {
-									show: false
-								},
-								y: {
-									title: {
-										formatter: function () {
-											return ''
-										}
-									}
-								}
-							}
-						}}
-					/>
+					<Now cityData={cityData} />
 				)}
 			</NowContainer>
 			<ByRegionContainer>
