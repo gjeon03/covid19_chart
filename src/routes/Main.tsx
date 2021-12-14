@@ -64,6 +64,32 @@ const Loader = styled.span`
 	display: block;
 `;
 
+const Overview = styled.div`
+	display: flex;
+	justify-content: space-between;
+	background-color: ${props => props.theme.boxColor};
+	border: 1px solid ${props => props.theme.textColor};
+	padding: 12px 20px;
+	border-radius: 10px;
+`;
+const OverviewItem = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 33%;
+	color: ${props => props.theme.textColor};
+	span:first-child {
+		font-size: 13px;
+		font-weight: 400;
+		text-transform: uppercase;
+		margin-bottom: 5px;
+	}
+	span:last-child {
+		font-size: 18px;
+		font-weight:700;
+	}
+`;
+
 interface ITotal {
 	resultCode: string;
 	TotalCase: string;
@@ -108,11 +134,37 @@ interface ICity {
 	newFcase: number;
 }
 
+interface ICitys {
+	resultCode: string;
+	resultMessage: string;
+	korea: ICity;
+	seoul: ICity;
+	busan: ICity;
+	daegu: ICity;
+	incheon: ICity;
+	gwangju: ICity;
+	daejeon: ICity;
+	ulsan: ICity;
+	sejong: ICity;
+	gyeonggi: ICity;
+	gangwon: ICity;
+	chungbuk: ICity;
+	chungnam: ICity;
+	jeonbuk: ICity;
+	jeonnam: ICity;
+	gyeongbuk: ICity;
+	gyeongnam: ICity;
+	jeju: ICity;
+	quarantine: ICity;
+}
+
 function Main() {
-	//const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
-	//const { isLoading: cityLoading, data: cityData } = useQuery<ICity[]>("city", fetchCity);
-	const totalLoading = false;
-	const cityLoading = false;
+	const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
+	const { isLoading: cityLoading, data: cityData } = useQuery<ICitys>("city", fetchCity);
+	// const totalLoading = false;
+	// const cityLoading = false;
+	const koreaCcase = cityData?.korea.newCcase;
+	const caseResult = String(koreaCcase).replace(",", "");
 	return (
 		<Container>
 			<Header>
@@ -123,45 +175,127 @@ function Main() {
 				<Tab>시·도</Tab>
 			</Tabs>
 			<TotalContainer>
-				<Text>전체</Text>
-				{totalLoading ? (<Loader>Loading...</Loader>) : null}
+				{totalLoading ? (<Loader>Loading...</Loader>) : (
+					<Overview>
+						<OverviewItem>
+							<span>사망자</span>
+							<span>{totalData?.TotalDeath}</span>
+						</OverviewItem>
+						<OverviewItem>
+							<span>확진자</span>
+							<span>{totalData?.TotalCase}</span>
+						</OverviewItem>
+						<OverviewItem>
+							<span>제한 해제</span>
+							<span>{totalData?.TotalRecovered}</span>
+						</OverviewItem>
+					</Overview>
+				)}
 			</TotalContainer>
 			<NowContainer>
 				<Text>신규 확진자</Text>
-				{cityLoading ? (<Loader>Loading...</Loader>) : null}
+				{cityLoading ? (<Loader>Loading...</Loader>) : (
+					<ApexChart
+						type="bar"
+						series={[{
+							data: [
+								Number(caseResult) | 0,
+								Number(cityData?.korea.newFcase) | 0]
+						}]}
+						options={{
+							chart: {
+								height: 100,
+								width: 500,
+								toolbar: {
+									show: false,
+								},
+								background: "transparent",
+							},
+							plotOptions: {
+								bar: {
+									barHeight: '100%',
+									distributed: true,
+									horizontal: true,
+									dataLabels: {
+										position: 'bottom'
+									},
+								}
+							},
+							colors: ['#33b2df', '#90ee7e'],
+							dataLabels: {
+								enabled: true,
+								textAnchor: 'start',
+								style: {
+									colors: ['#fff']
+								},
+								formatter: function (val, opt) {
+									return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+								},
+								offsetX: 0,
+								dropShadow: {
+									enabled: true
+								}
+							},
+							stroke: {
+								width: 1,
+								colors: ['#fff']
+							},
+							xaxis: {
+								categories: ['국내', '해외유입'],
+								axisBorder: { show: false },
+								axisTicks: { show: false },
+								labels: { show: false },
+							},
+							grid: { show: false },
+							yaxis: {
+								labels: {
+									show: false
+								}
+							},
+							subtitle: {
+								text: 'Category Names as DataLabels inside bars',
+								align: 'center',
+							},
+							legend: {
+								show: false
+							},
+							tooltip: {
+								theme: 'dark',
+								x: {
+									show: false
+								},
+								y: {
+									title: {
+										formatter: function () {
+											return ''
+										}
+									}
+								}
+							}
+						}}
+					/>
+				)}
 			</NowContainer>
 			<ByRegionContainer>
 				<Text>지역별 비율</Text>
 				{totalLoading ? (<Loader>Loading...</Loader>) : (
 					<ApexChart
 						type='donut'
-						series={[44, 55, 41, 17, 15
-							// Number(totalData?.city1p),
-							// Number(totalData?.city2p),
-							// Number(totalData?.city3p),
-							// Number(totalData?.city4p),
-							// Number(totalData?.city5p)
+						series={[
+							Number(totalData?.city1p),
+							Number(totalData?.city2p),
+							Number(totalData?.city3p),
+							Number(totalData?.city4p),
+							Number(totalData?.city5p)
 						]}
 						options={{
-							// labels: [
-							// 		totalData?.city1n,
-							// 		totalData?.city2n,
-							// 		totalData?.city3n,
-							// 		totalData?.city4n,
-							// 		totalData?.city5n,
-							// 	],
-							labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
-							responsive: [{
-								breakpoint: 480,
-								options: {
-									chart: {
-										width: 200
-									},
-									legend: {
-										position: 'bottom'
-									}
-								}
-							}],
+							labels: [
+								totalData?.city1n || "",
+								totalData?.city2n || "",
+								totalData?.city3n || "",
+								totalData?.city4n || "",
+								totalData?.city5n || "",
+							],
 							legend: {
 								show: false
 							}
