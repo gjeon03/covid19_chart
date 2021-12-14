@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchTotal, fetchCity } from "../api";
+import ApexChart from "react-apexcharts";
 
 const Span = styled.span`
 	text-align: center;
@@ -108,8 +109,10 @@ interface ICity {
 }
 
 function Main() {
-	const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
-	const { isLoading: cityLoading, data: cityData } = useQuery<ICity[]>("city", fetchCity);
+	//const { isLoading: totalLoading, data: totalData } = useQuery<ITotal>("total", fetchTotal);
+	//const { isLoading: cityLoading, data: cityData } = useQuery<ICity[]>("city", fetchCity);
+	const totalLoading = false;
+	const cityLoading = false;
 	return (
 		<Container>
 			<Header>
@@ -129,7 +132,42 @@ function Main() {
 			</NowContainer>
 			<ByRegionContainer>
 				<Text>지역별 비율</Text>
-				{totalLoading ? (<Loader>Loading...</Loader>) : null}
+				{totalLoading ? (<Loader>Loading...</Loader>) : (
+					<ApexChart
+						type='donut'
+						series={[44, 55, 41, 17, 15
+							// Number(totalData?.city1p),
+							// Number(totalData?.city2p),
+							// Number(totalData?.city3p),
+							// Number(totalData?.city4p),
+							// Number(totalData?.city5p)
+						]}
+						options={{
+							// labels: [
+							// 		totalData?.city1n,
+							// 		totalData?.city2n,
+							// 		totalData?.city3n,
+							// 		totalData?.city4n,
+							// 		totalData?.city5n,
+							// 	],
+							labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
+							responsive: [{
+								breakpoint: 480,
+								options: {
+									chart: {
+										width: 200
+									},
+									legend: {
+										position: 'bottom'
+									}
+								}
+							}],
+							legend: {
+								show: false
+							}
+						}}
+					/>
+				)}
 			</ByRegionContainer>
 		</Container>
 	);
