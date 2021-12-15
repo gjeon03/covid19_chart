@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/covid19_chart/static/js/main.2813c3ef.chunk.js",
-    "main.js.map": "/covid19_chart/static/js/main.2813c3ef.chunk.js.map",
+    "main.js": "/covid19_chart/static/js/main.6c488601.chunk.js",
+    "main.js.map": "/covid19_chart/static/js/main.6c488601.chunk.js.map",
     "runtime-main.js": "/covid19_chart/static/js/runtime-main.755dde89.js",
     "runtime-main.js.map": "/covid19_chart/static/js/runtime-main.755dde89.js.map",
-    "static/js/2.65561164.chunk.js": "/covid19_chart/static/js/2.65561164.chunk.js",
-    "static/js/2.65561164.chunk.js.map": "/covid19_chart/static/js/2.65561164.chunk.js.map",
+    "static/js/2.f15b57e9.chunk.js": "/covid19_chart/static/js/2.f15b57e9.chunk.js",
+    "static/js/2.f15b57e9.chunk.js.map": "/covid19_chart/static/js/2.f15b57e9.chunk.js.map",
     "index.html": "/covid19_chart/index.html",
-    "static/js/2.65561164.chunk.js.LICENSE.txt": "/covid19_chart/static/js/2.65561164.chunk.js.LICENSE.txt"
+    "static/js/2.f15b57e9.chunk.js.LICENSE.txt": "/covid19_chart/static/js/2.f15b57e9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.755dde89.js",
-    "static/js/2.65561164.chunk.js",
-    "static/js/main.2813c3ef.chunk.js"
+    "static/js/2.f15b57e9.chunk.js",
+    "static/js/main.6c488601.chunk.js"
   ]
 }
