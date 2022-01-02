@@ -45,16 +45,16 @@ function Main() {
 				<title>COVID-19</title>
 			</Helmet>
 			<Header>
-				<Title>
-					<Link to="/">COVID-19</Link>
-				</Title>
 				<div>
 					<DarkModeToggle
 						onChange={toggleDarkAtom}
 						checked={isDark}
-						size={60}
+						size={50}
 					/>
 				</div>
+				<Title>
+					<Link to="/">COVID-19</Link>
+				</Title>
 			</Header>
 			<Tabs>
 				<Tab isActive={domesticMatch !== null}>

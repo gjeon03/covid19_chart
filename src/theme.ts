@@ -11,7 +11,7 @@ export const darkTheme: DefaultTheme = {
 export const lightTheme: DefaultTheme = {
 	bgColor: "whitesmoke",
 	textColor: "#2f3640",
-	accentColor: "#bea6fc",
+	accentColor: "#ffa502",
 	boxColor: "#f5f6fa",
 	selectBox: "#f5f6fa",
 };

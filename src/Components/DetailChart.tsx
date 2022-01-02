@@ -1,13 +1,16 @@
 import ApexChart from "react-apexcharts";
 import { ICity } from "../types/cityData";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface IProps {
 	cityData?: ICity;
 }
 
-function Now({ cityData }: IProps) {
+function DetailChart({ cityData }: IProps) {
 	const koreaCcase = cityData?.newCcase;
 	const caseResult = String(koreaCcase).replace(",", "");
+	const isDark = useRecoilValue(isDarkAtom);
 	return (
 		<ApexChart
 			type="bar"
@@ -41,31 +44,40 @@ function Now({ cityData }: IProps) {
 					enabled: true,
 					textAnchor: 'start',
 					style: {
-						colors: ['#ced6e0']
-					},
-					formatter: function (val, opt) {
-						return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+						colors: [isDark ? "#f5f6fa" : "#2f3640"]
 					},
 					offsetX: 0,
 					dropShadow: {
-						enabled: true
+						enabled: false
 					}
 				},
 				stroke: {
 					width: 1,
-					colors: [`#f1f2f6`]
+					colors: [isDark ? "#f5f6fa" : "#2f3640"]
 				},
 				xaxis: {
 					categories: ['해외유입', '국내'],
-					axisBorder: { show: false },
-					axisTicks: { show: false },
-					labels: { show: false },
+					axisBorder: { show: true },
+					axisTicks: { show: true },
+					labels: {
+						show: true,
+						style: {
+							colors: [isDark ? "#f5f6fa" : "#2f3640"]
+						}
+					},
 				},
 				grid: { show: false },
 				yaxis: {
 					labels: {
-						show: false
-					}
+						show: true,
+						style: {
+							colors: [isDark ? "#f5f6fa" : "#2f3640"],
+							fontSize: '12px',
+							fontFamily: 'Helvetica, Arial, sans-serif',
+							fontWeight: 400,
+							cssClass: 'apexcharts-yaxis-label',
+						},
+					},
 				},
 				legend: {
 					show: false
@@ -88,4 +100,4 @@ function Now({ cityData }: IProps) {
 	);
 }
 
-export default Now;
+export default DetailChart;

@@ -15,18 +15,20 @@ const titleAnimaion = keyframes`
 export const Header = styled.header`
 	height: 15vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-weight: 500;
 	position: relative;
 	div {
 		position: absolute;
+		top: 5px;
 		right: 0;
 	}
 `;
 
 export const Title = styled.h1`
-	font-size: 48px;
+	font-size: 45px;
 	color: ${(props) => props.theme.accentColor};
 	&:hover {
 		animation: ${titleAnimaion} 300ms step-end infinite;

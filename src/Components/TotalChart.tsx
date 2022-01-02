@@ -1,11 +1,13 @@
 import ApexChart from "react-apexcharts";
 import { ITotal } from "../types/totalData";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface IProps {
 	totalData?: ITotal;
 }
 
-function Total({ totalData }: IProps) {
+function TotalChart({ totalData }: IProps) {
 	const other = 100 - (
 		Number(totalData?.city1p)
 		+ Number(totalData?.city2p)
@@ -13,7 +15,7 @@ function Total({ totalData }: IProps) {
 		+ Number(totalData?.city4p)
 		+ Number(totalData?.city5p)
 	)
-	console.log();
+	const isDark = useRecoilValue(isDarkAtom);
 	return (
 		<ApexChart
 			type='donut'
@@ -35,7 +37,10 @@ function Total({ totalData }: IProps) {
 					"기타",
 				],
 				legend: {
-					show: false
+					show: true,
+					labels: {
+						colors: [isDark ? "#f5f6fa" : "#2f3640"]
+					}
 				},
 				responsive: [{
 					breakpoint: 480,
@@ -61,4 +66,4 @@ function Total({ totalData }: IProps) {
 	);
 }
 
-export default Total;
+export default TotalChart;

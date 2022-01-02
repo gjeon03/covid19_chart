@@ -7,8 +7,8 @@ import {
 	OverviewItem,
 	TopMsg,
 } from "../styles/covid19View";
-import Now from "../chart/Now";
-import Total from "../chart/Total";
+import DetailChart from "../Components/DetailChart";
+import TotalChart from "../Components/TotalChart";
 import { ITotal } from "../types/totalData";
 import { ICitys } from "../types/cityData";
 import { Loader } from "../styles/loader";
@@ -53,13 +53,13 @@ function Domestic({ totalLoading, cityLoading, totalData, cityData }: IProps) {
 			<NowContainer>
 				<Text>신규 확진자</Text>
 				{cityLoading ? (<Loader>Loading...</Loader>) : (
-					<Now cityData={cityData?.korea} />
+					<DetailChart cityData={cityData?.korea} />
 				)}
 			</NowContainer>
 			<ByRegionContainer>
 				<Text>지역별 비율</Text>
 				{totalLoading ? (<Loader>Loading...</Loader>) : (
-					<Total totalData={totalData} />
+					<TotalChart totalData={totalData} />
 				)}
 			</ByRegionContainer>
 		</>

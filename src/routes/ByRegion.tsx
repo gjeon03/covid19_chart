@@ -14,7 +14,7 @@ import {
 } from "../styles/covid19View";
 import { Loader } from "../styles/loader";
 import { ICitys, ICity } from "../types/cityData";
-import Now from "../chart/Now";
+import DetailChart from "../Components/DetailChart";
 import { Helmet } from "react-helmet-async";
 
 interface IProps {
@@ -74,7 +74,7 @@ function ByRegion({ cityData, cityLoading }: IProps) {
 						</Overview>
 						<NowContainer>
 							<Text>신규 확진자</Text>
-							<Now cityData={result} />
+							<DetailChart cityData={result} />
 						</NowContainer>
 						<DivBox>
 							<Overview>
