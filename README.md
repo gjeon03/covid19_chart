@@ -22,7 +22,7 @@ header의 title을 바꾸기 위해 사용
 
 ## recoil
 
-상태 변환 라이브러리로 Styled-components의 ThemeProvider 와 같이 사용하여 웹은 Dark&White 모드를 구현하였습니다.
+상태 변환 라이브러리로 Styled-components의 ThemeProvider 와 같이 사용하여 Dark & White 모드를 구현하였습니다.
 
 ## apexcharts
 
